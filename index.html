@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 paskaita</title>
+
+    <style>
+
+        .stVieta {
+            display: flex;
+        }
+
+        .staciakampis {
+            width: auto;
+            margin: 0 auto;
+            display: block;
+            border: 1px solid black;
+            background-color: burlywood;
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <input type='text' id='sk1' name='sk1' value=10>
+    <input type='text' id='sk2' name='sk2' value=10>
+
+    <button id='kvPlotas'>Plotas</button>
+    <button id='kvPerimetras'>Perimetras</button>
+    <button id='kvIstrizaine'>Istrizaine</button>
+    <button id='kvNubraizyk'>Nubraizyk</button>
+
+    <div id='rezultatas'>
+
+    </div>
+
+    <div class='stVieta'>
+
+    <div class='staciakampis'>
+
+    </div>
+</div>
+
+
+
+
+
+
+    <script>
+        'use strict';
+
+      //  1. Susikurti objektą "Kvadratas".
+// Objektas turi priimti du kintamuosius: a ir b kraštines.
+// Sukurti du metodus, kurie skaičiuoja kvadrato plotą, perimetrą, įstrižainės ilgį.
+// Informaciją išvesti į <p> žymę.
+
+// Papildoma: a ir b kintamieji apibrežia kvadratą pikseliais. Pagal įvestas reikšmes į input, HTML nubraižomas kvadrato objektas.
+
+
+
+
+var kvadratas = {
+    a: 0,
+    b: 0,
+    rezultatas: 0,
+    
+    paleidimas: function(sk1, sk2) {
+        this.a = sk1;
+        this.b = sk2;
+        // this.nubraizyk();
+    },
+
+    kvPlotas: function() {
+
+        var plotas = this.a * this.b;
+        return plotas;
+    },
+
+    kvPerimetras: function() {
+        var perimetras = 2*this.a + 2*this.a;
+        return perimetras;
+    },
+
+    kvIstrizaine: function() {
+       var Istrizaine = Math.sqrt(this.a*this.a + this.b*this.b);
+        return Istrizaine;
+    },
+
+    nubraizyk: function() {
+        var staciakampis = document.querySelector('.staciakampis');
+        var div = document.createElement('div');
+       div.style.width = parseInt(document.getElementById('sk1').value) + 'px';
+       div.style.height = parseInt(document.getElementById('sk2').value) + 'px'; 
+       div.classList.add('staciakampis');
+    //    staciakampis.innerHTML = staciakampis;
+       staciakampis.append(div);
+    }
+
+};
+
+document.querySelector('#kvPlotas').addEventListener('click', function() {
+ var sk1 = parseFloat(document.querySelector('#sk1').value);
+ var sk2 = parseFloat(document.querySelector('#sk2').value);
+ var isvedimoElementas = document.querySelector('#rezultatas')
+    kvadratas.paleidimas(sk1, sk2);
+
+ isvedimoElementas.innerHTML = kvadratas.kvPlotas();
+ });
+
+ document.querySelector('#kvPerimetras').addEventListener('click', function() {
+ var sk1 = parseFloat(document.querySelector('#sk1').value);
+ var sk2 = parseFloat(document.querySelector('#sk2').value);
+ var isvedimoElementas = document.querySelector('#rezultatas')
+    kvadratas.paleidimas(sk1, sk2);
+
+ isvedimoElementas.innerHTML = kvadratas.kvPerimetras();
+ });
+
+ document.querySelector('#kvIstrizaine').addEventListener('click', function() {
+ var sk1 = parseFloat(document.querySelector('#sk1').value);
+ var sk2 = parseFloat(document.querySelector('#sk2').value);
+ var isvedimoElementas = document.querySelector('#rezultatas')
+    kvadratas.paleidimas(sk1, sk2);
+
+ isvedimoElementas.innerHTML = kvadratas.kvIstrizaine();
+ });
+   
+ document.querySelector('#kvNubraizyk').addEventListener('click', function() {
+ var sk1 = parseFloat(document.querySelector('#sk1').value);
+ var sk2 = parseFloat(document.querySelector('#sk2').value);
+ var isvedimoElementas = document.querySelector('#rezultatas')
+    kvadratas.paleidimas(sk1, sk2);
+    kvadratas.nubraizyk();
+ });
+   
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
