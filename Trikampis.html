@@ -33,6 +33,9 @@
             c: 5,
             arTrikampis: false,
             pusPer: 0,
+            plotas: 0,
+            perimetras: 0,
+            kampai: [0, 0, 0],
 
             paleidimas: function (krastineA, krastineB, krastineC) {
                 this.a = krastineA;
@@ -42,15 +45,15 @@
             },
             tikrinimas: function() {
                 if(this.a + this.b > this.c && this.b + this.c > this.a && this.a + this.c > this.b ) {
-                    this.arTrikampis = true;
+                    return true;
                 }
 
-                return this.arTrikampis;
+                return false;
             },
 
             pusPerimetris: function() {
 
-                if(this.arTrikampis == true) {
+                if(this.tikrinimas()) {
                     this.pusPer = ((this.a + this.b + this.c) / 2);
                     return this.pusPer;
                 }
@@ -59,9 +62,37 @@
 
             },
 
-            trPlotas: function () {
-                var trPlotas = Math.sqrt(this.pusPer * (this.pusPer-this.a)*(this.pusPer-this.b)*(this.pusPer-this.c));
-                return trPlotas;
+            trplotas: function () {
+                if(this.tikrinimas()) {
+                this.plotas = Math.sqrt(this.pusPer * (this.pusPer-this.a)*(this.pusPer-this.b)*(this.pusPer-this.c));
+                return this.plotas;
+                }
+                return 'Tai ne trikampis' ;
+            },
+
+
+            trPerimetras: function () {
+                if(this.tikrinimas()) {
+                this.perimetras = this.a + this.b + this.c;
+                return this.perimetras;
+                }
+                return 'Tai ne trikampis' ;
+            },
+
+            Kampai: function() {
+                if(this.tikrinimas()) {
+                    this.laikinaskampai[0] = Math.acos((this.b*this.b+this.c*this.c-this.a*this.a)/2*this.b*this.c);
+                    this.kampai[0] = Math.toDegrees(laikinaskampai[0]);
+                    this.laikinaskampai[1] = Math.acos((this.a*this.a+this.c*this.c-this.b*this.b)/2*this.a*this.c);
+                    this.kampai[1] = Math.toDegrees(laikinaskampai[1]);
+                    this.laikinaskampai[2] = Math.acos((this.a*this.a+this.b*this.b-this.c*this.c)/2*this.a*this.b);
+                    this.kampai[2] = Math.toDegrees(laikinaskampai[2]);
+                    return this.kampai[0, 1, 2];
+
+                    console.log(kampai[0, 1, 2]);
+
+                }
+                return 'Tai ne trikampis'
             }
                                                 
         };
@@ -72,15 +103,56 @@
          var krastineC = parseFloat(document.querySelector('#krastineC').value);
          var isvedimoElementas = document.querySelector('.rezultatas')
          trikampis.paleidimas(krastineA, krastineB, krastineC);
-         trikampis.tikrinimas();
-         if(trikampis.arTrikampis == true) {
-            isvedimoElementas.innerHTML = trikampis.pusPerimetris();
-        console.log(trikampis.trPlotas());
-         } else {
-             alert('Tai ne trikampis');
-         }
+        //  trikampis.tikrinimas();
+        //  if(trikampis.arTrikampis == true) {
+            isvedimoElementas.innerHTML = 'Trikampio pusperimetris : ' + trikampis.pusPerimetris();
+        // console.log(trikampis.trPlotas());
+        //  } else {
+            //  alert('Tai ne trikampis');
+        //  }
         
  });
+        document.querySelector('#trPlotas').addEventListener('click', function() {
+         var krastineA = parseFloat(document.querySelector('#krastineA').value);
+         var krastineB = parseFloat(document.querySelector('#krastineB').value);
+         var krastineC = parseFloat(document.querySelector('#krastineC').value);
+         var isvedimoElementas = document.querySelector('.rezultatas')
+         trikampis.paleidimas(krastineA, krastineB, krastineC);
+         trikampis.pusPerimetris();
+        //  trikampis.tikrinimas();
+        //  if(trikampis.arTrikampis == true) {
+            isvedimoElementas.innerHTML = 'Trikampio plotas : ' + trikampis.trplotas();
+        // console.log(trikampis.trPlotas());
+        //  } else {
+            //  alert('Tai ne trikampis');
+        //  }
+        });
+
+        document.querySelector('#trKampai').addEventListener('click', function() {
+         var krastineA = parseFloat(document.querySelector('#krastineA').value);
+         var krastineB = parseFloat(document.querySelector('#krastineB').value);
+         var krastineC = parseFloat(document.querySelector('#krastineC').value);
+         var isvedimoElementas = document.querySelector('.rezultatas')
+         trikampis.paleidimas(krastineA, krastineB, krastineC);
+      
+            isvedimoElementas.innerHTML = 'Kampas tarp A/C alfa : ' + trikampis.Kampai(kampai[0]) + 'Kampas tarp B/C gama :' + trikampis.Kampai(kampai[2] + 'Kampas tarp A/B :' + trikampis.Kampai(kampai[1]));
+     
+        });
+
+        document.querySelector('#trPerimetras').addEventListener('click', function() {
+         var krastineA = parseFloat(document.querySelector('#krastineA').value);
+         var krastineB = parseFloat(document.querySelector('#krastineB').value);
+         var krastineC = parseFloat(document.querySelector('#krastineC').value);
+         var isvedimoElementas = document.querySelector('.rezultatas')
+         trikampis.paleidimas(krastineA, krastineB, krastineC);
+        //  trikampis.tikrinimas();
+        //  if(trikampis.arTrikampis == true) {
+            isvedimoElementas.innerHTML = 'Trikampio perimetras : ' + trikampis.trPerimetras();
+        // console.log(trikampis.trPlotas());
+        //  } else {
+            //  alert('Tai ne trikampis');
+        //  }
+        });
 
 
 
