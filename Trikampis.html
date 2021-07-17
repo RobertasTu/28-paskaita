@@ -8,9 +8,9 @@
 </head>
 <body>
 
-    <input type='text' id='krastineA' name='krastineA' value=3>
-    <input type='text' id='krastineB' name='krastineB' value=4>
-    <input type='text' id='krastineC' name='krastineC' value=5>
+    <input type='text' id='krastineA' name='krastineA' value=3>Krastine A<br>
+    <input type='text' id='krastineB' name='krastineB' value=4>Krastine B<br>
+    <input type='text' id='krastineC' name='krastineC' value=5>Krastine C<br>
 
     <button id='trPlotas'>Plotas</button>
     <button id='trPerimetras'>Perimetras</button>
@@ -36,6 +36,7 @@
             plotas: 0,
             perimetras: 0,
             kampai: [0, 0, 0],
+            laikinaskampai:[0,0,0],
 
             paleidimas: function (krastineA, krastineB, krastineC) {
                 this.a = krastineA;
@@ -81,15 +82,19 @@
 
             Kampai: function() {
                 if(this.tikrinimas()) {
-                    this.laikinaskampai[0] = Math.acos((this.b*this.b+this.c*this.c-this.a*this.a)/2*this.b*this.c);
-                    this.kampai[0] = Math.toDegrees(laikinaskampai[0]);
-                    this.laikinaskampai[1] = Math.acos((this.a*this.a+this.c*this.c-this.b*this.b)/2*this.a*this.c);
-                    this.kampai[1] = Math.toDegrees(laikinaskampai[1]);
-                    this.laikinaskampai[2] = Math.acos((this.a*this.a+this.b*this.b-this.c*this.c)/2*this.a*this.b);
-                    this.kampai[2] = Math.toDegrees(laikinaskampai[2]);
-                    return this.kampai[0, 1, 2];
+                    
+                    var laikinaskampai = [0, 0, 0]
+                    laikinaskampai[0] =Math.acos((this.b*this.b+this.c*this.c-this.a*this.a)/(2*this.b*this.c));
+                    console.log(laikinaskampai[0]);
+                    this.kampai[0] = ((laikinaskampai[0] * 180) / Math.PI);
+                    laikinaskampai[1] = Math.acos((this.a*this.a+this.c*this.c-this.b*this.b)/(2*this.a*this.c));
+                    this.kampai[1] = ((laikinaskampai[1]  * 180) / Math.PI);
+                    laikinaskampai[2] = Math.acos((this.a*this.a+this.b*this.b-this.c*this.c)/(2*this.a*this.b));
+                    this.kampai[2] = ((laikinaskampai[2] * 180) / Math.PI);
+                    // return this.kampai;
 
-                    console.log(kampai[0, 1, 2]);
+                    console.log(laikinaskampai[0]);
+                    console.log(this.kampai);
 
                 }
                 return 'Tai ne trikampis'
@@ -134,9 +139,10 @@
          var krastineC = parseFloat(document.querySelector('#krastineC').value);
          var isvedimoElementas = document.querySelector('.rezultatas')
          trikampis.paleidimas(krastineA, krastineB, krastineC);
+         trikampis.Kampai();
       
-            isvedimoElementas.innerHTML = 'Kampas tarp A/C alfa : ' + trikampis.Kampai(kampai[0]) + 'Kampas tarp B/C gama :' + trikampis.Kampai(kampai[2] + 'Kampas tarp A/B :' + trikampis.Kampai(kampai[1]));
-     
+            // isvedimoElementas.innerHTML = 'Kampas tarp A/C alfa : ' + trikampis.Kampai()[0] + 'Kampas tarp B/C gama :' + trikampis.Kampai(kampai[2] + 'Kampas tarp A/B :' + trikampis.Kampai(kampai[1]));
+            isvedimoElementas.innerHTML = 'Kampas tarp A/B :' + trikampis.kampai[0] + ' Kampas tarp B/C : ' + trikampis.kampai[1] + ' Kampas tarp A/C : ' + trikampis.kampai[2]; 
         });
 
         document.querySelector('#trPerimetras').addEventListener('click', function() {
