@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 psk Masyvai</title>
+</head>
+
+<style>
+
+    h1 {
+        display: flex;
+        width: 100%;
+    }
+
+    /* .container {
+
+        /* display: flex; */
+    /* } */ 
+
+    table, th, td {
+       
+        
+        width: 80%;
+        margin: auto;
+        border: 1px solid black;
+    }
+</style>
+
+
+<body>
+
+    <div class='container'>
+        <h1>Klientu duomenys</h1><br>
+<table>
+        <tr>
+            <th>Vardas</th>
+            <th>Pavarde</th>
+            <th>Asmens kodas</th>
+            <th>Prisijungimo data</th>
+            <th>Adresas</th>
+            <th>El.pasto adresas</th>
+            
+        </tr>
+            <tr>
+            <td><input type='text' id='vardas' name='vardas' placeholder='Iveskite varda'></td>
+            <td><input type='text' id='pavarde' name='pavarde' placeholder='Iveskite pavarde'></td>
+            <td><input type='text' id='asmensKodas' name='asmensKodas' placeholder='Iveskite asmens koda'></td>
+            <td><input type='text' id='prisijungData' name='prisijungData' placeholder='data' disabled></td>
+            <td><input type='text'id='adresas' name='adresas' placeholder='adresas'></td>
+            <td><input type='text' id='elPastas' name='elPastas' placeholder='El.pastas'></td>         
+           <td><button id='ivesti'>Issaugoti duomenis</button></td>
+        </tr>
+        <tr id='atvaizdavimas'>
+
+        </tr>
+        
+
+    </table>
+
+
+    </div>
+
+
+    <script>
+    'use strict';
+
+    // var table = document.querySelector('.atvaizdavimas');
+    var masyvas = [];
+    for (var i=0; i < 200; i++) {
+        var klientas = {
+            vardas: 'vardenis' + (i+1),
+            pavarde: 'pavardenis' + (i+1),
+            asmensKodas: 123456789 + (i+1),
+            prisijungData: new Date,
+            adresas: 'Adresas' + (i+1),
+            elPastas: 'vardas' + '.' + 'pavarde' + '@pastas.lt;'
+        };
+        // masyvas.push(klientas);
+        console.log(klientas);
+        
+        
+        
+        
+    }
+
+    // for (var i=0; i<masyvas.lenght; i++) {
+    //     var tr = document.createElement('tr');
+    //  tr.innerHTML = masyvas[i].vardas + ';' + masyvas[i].pavarde + ';' + masyvas[i].asmensKodas + ';' + masyvas[i].prisijungData + ';' + masyvas[i].adresas + ';' + masyvas[i].elPastas;
+
+        
+    // };
+    
+    
+    var naujasKlientas = {
+        vardas: '',
+        pavarde: '',
+        asmensKodas: null,
+        prisijungData: null,
+        adresas: '',
+        elPastas: '',
+        Ivesti: null,
+        atvaizdavimas: null,
+   
+  
+
+    issaugojimas: function () {
+       
+        naujasKlientas.atvaizdavimas = document.querySelector('#atvaizdavimas');
+        naujasKlientas.vardas = document.querySelector('#vardas');
+        naujasKlientas.pavarde = document.querySelector('#pavarde');
+        naujasKlientas.asmensKodas = document.querySelector('#asmensKodas');
+        naujasKlientas.prisijungData = document.querySelector('#prisijungData');
+        naujasKlientas.adresas = document.querySelector('#adresas');
+        naujasKlientas.elPastas = document.querySelector('#elPastas');
+        
+        
+        
+        naujasKlientas.Ivesti.addEventListener('Click', ivesti);
+
+        if(mygtukasivesti == true) {
+            issaugojimas();
+            console.log(naujasKlientas);
+           
+
+            var isvedimoElementas = document.querySelector('.atvaizdavimas');
+            isvedimoElementas.innerHTML = naujasKlientas.issaugojimas(naujasKlientas);
+            
+
+            masyvas.innerHTML = naujasKlientas[i].vardas + '' + naujasKlientas[i].pavarde + '' + naujasKlientas[i].asmensKodas + '' + naujasKlientas[i].prisijungData + '' + naujasKlientas[i].adresas + '' + naujasKlientas[i].elPastas;
+            masyvas.append(naujasKlientas);
+            
+            masyvas.push(naujasKlientas);
+            console.log(naujasKlientas);
+        }
+
+    }
+
+    // document.querySelector('#ivesti').addEventListener('click', function() {
+    //   var vardas = parseFloat(document.querySelector('vardas'));  
+
+
+    }
+
+    // table.append(td);
+
+
+</script>
+    
+</body>
+</html>

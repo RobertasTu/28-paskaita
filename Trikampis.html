@@ -8,9 +8,11 @@
 </head>
 <body>
 
-    <input type='text' id='krastineA' name='krastineA' value=3>Krastine A<br>
-    <input type='text' id='krastineB' name='krastineB' value=4>Krastine B<br>
-    <input type='text' id='krastineC' name='krastineC' value=5>Krastine C<br>
+    <div class='trikampis'><img src='IMG\trikampis.jpg'></div>
+
+    <input type='text' id='krastineA' name='krastineA' value=3>Krastine a<br>
+    <input type='text' id='krastineB' name='krastineB' value=4>Krastine b<br>
+    <input type='text' id='krastineC' name='krastineC' value=5>Krastine c<br>
 
     <button id='trPlotas'>Plotas</button>
     <button id='trPerimetras'>Perimetras</button>
@@ -86,11 +88,19 @@
                     var laikinaskampai = [0, 0, 0]
                     laikinaskampai[0] =Math.acos((this.b*this.b+this.c*this.c-this.a*this.a)/(2*this.b*this.c));
                     console.log(laikinaskampai[0]);
-                    this.kampai[0] = ((laikinaskampai[0] * 180) / Math.PI);
+                    var laikKampas = [0, 0, 0]
+                    laikKampas[0] = ((laikinaskampai[0] * 180) / Math.PI);
+                    this.kampai[0] = laikKampas[0].toFixed(2);
+
                     laikinaskampai[1] = Math.acos((this.a*this.a+this.c*this.c-this.b*this.b)/(2*this.a*this.c));
-                    this.kampai[1] = ((laikinaskampai[1]  * 180) / Math.PI);
+                    laikKampas[1] = ((laikinaskampai[1]  * 180) / Math.PI);
+                    this.kampai[1] = laikKampas[1].toFixed(2);
+
+
                     laikinaskampai[2] = Math.acos((this.a*this.a+this.b*this.b-this.c*this.c)/(2*this.a*this.b));
-                    this.kampai[2] = ((laikinaskampai[2] * 180) / Math.PI);
+                    laikKampas[2] = ((laikinaskampai[2] * 180) / Math.PI);
+                    this.kampai[2] = laikKampas[1].toFixed(2);
+
                     // return this.kampai;
 
                     console.log(laikinaskampai[0]);
@@ -142,7 +152,7 @@
          trikampis.Kampai();
       
             // isvedimoElementas.innerHTML = 'Kampas tarp A/C alfa : ' + trikampis.Kampai()[0] + 'Kampas tarp B/C gama :' + trikampis.Kampai(kampai[2] + 'Kampas tarp A/B :' + trikampis.Kampai(kampai[1]));
-            isvedimoElementas.innerHTML = 'Kampas tarp A/B :' + trikampis.kampai[0] + ' Kampas tarp B/C : ' + trikampis.kampai[1] + ' Kampas tarp A/C : ' + trikampis.kampai[2]; 
+            isvedimoElementas.innerHTML = 'Kampas tarp a/b :' + trikampis.kampai[0] + ' Kampas tarp b/c : ' + trikampis.kampai[1] + ' Kampas tarp a/c : ' + trikampis.kampai[2]; 
         });
 
         document.querySelector('#trPerimetras').addEventListener('click', function() {
